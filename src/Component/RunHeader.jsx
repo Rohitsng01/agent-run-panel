@@ -18,7 +18,7 @@ export default function RunHeader({ run, thoughts, elapsed }) {
   return (
     <div className="relative overflow-hidden bg-gradient-to-r from-slate-900 via-purple-950/20 to-slate-900 border-b border-slate-800 p-6">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-cyan-400 to-emerald-400"></div>
-      
+
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-2xl font-bold text-white tracking-tight flex items-center gap-3">
