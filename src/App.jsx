@@ -38,25 +38,30 @@ export default function App() {
   };
 
   useEffect(() => {
-    // Hacky reset by unmounting/remounting or just using the emitter
-    dispatch({ type: "RESET" }); // Will implement reset in reducer
-    setElapsed(0);
     const fixture = useErrorFixture ? runError : runSuccess;
+
+    dispatch({ type: "RESET" });
+    setElapsed(0);
+
     const emitter = new MockEmitter(fixture, dispatch);
     emitter.start();
+
+    return () => {
+      // optional cleanup if your emitter supports it
+    };
   }, [useErrorFixture]);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 p-6 md:p-12 font-sans selection:bg-purple-500/30">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-end gap-4 mb-6">
-          <button 
+          <button
             onClick={() => setUseErrorFixture(false)}
             className={`px-4 py-2 rounded text-sm font-medium border ${!useErrorFixture ? 'bg-purple-500/20 border-purple-500/50 text-purple-300' : 'bg-slate-800 border-slate-700 text-slate-400 hover:text-slate-200'}`}
           >
             Run Success Fixture
           </button>
-          <button 
+          <button
             onClick={() => setUseErrorFixture(true)}
             className={`px-4 py-2 rounded text-sm font-medium border ${useErrorFixture ? 'bg-red-500/20 border-red-500/50 text-red-300' : 'bg-slate-800 border-slate-700 text-slate-400 hover:text-slate-200'}`}
           >
